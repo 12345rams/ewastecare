@@ -84,7 +84,6 @@
             </div>
         </section>
         
-        <!-- Add more product sections here -->
         <div id="product-details-modal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
@@ -100,20 +99,30 @@
     </main>
 
 <script>
- async function add(){
+async function add() {
     const config = { headers: { "Content-Type": "application/json" } };
-    const product={
-        nameOfProduct:   document.querySelector('.modal-product-name').textContent,
+    const product = {
+        nameOfProduct: document.querySelector('.modal-product-name').textContent,
         img: document.querySelector('.modal-image').src,
-        price:  document.querySelector('.modal-product-price').textContent,
-        discription:document.querySelector('.modal-product-description').textContent,
- 
+        price: document.querySelector('.modal-product-price').textContent,
+        discription: document.querySelector('.modal-product-description').textContent,
+    };
+        const data = await axios.post('/addToCart', product);
+        if(data=="Cart added successfully")
+    {
+        JSAlert.alert(data.data, null, JSAlert.Icons.Success).dismissIn(1000 * 1);
     }
-    const data=  await axios.post('/addToCart',product);
-   
-    JSAlert.alert("<code >item added succesfully </code >",null,JSAlert.Icons.Success).dismissIn(1000 * 1);
-       
-     }
+    else{
+        JSAlert.alert('Error adding item to cart. Please log in.', null, JSAlert.Icons.Error)
+            .dismissIn(1000 * 1)
+            .then(() => {
+                window.location.href = '/login';  
+            });
+        
+    }
+}
+
+
 </script>
     <script src="/javascripts/product.js"></script>
 </body>
