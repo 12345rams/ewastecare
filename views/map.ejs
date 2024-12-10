@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet with Bootstrap Icon</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div style="text-align: center; margin: 10px;"><h1>Recycle Centre</h1></div>
+    <div id="map" style="width: 80%; height: 400px; margin-left: 10%;">
+   
+</div>
+
+    <script>
+        var mapOptions = {
+            center: [27.385044, 80.486671],
+            zoom: 6
+        };
+
+        var map = new L.map('map', mapOptions);
+
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
+
+        var iconOptions = {
+            html: '<i class="bi bi-geo-alt-fill" style="font-size: 30px; color: red;"></i>',
+            iconSize: [30, 30],
+            className: 'leaflet-div-icon'
+        };
+
+        var markerOptions = {
+            clickable: true,
+            draggable: false
+        };
+
+        var markers = [
+            { lat: 27.335044, lon: 80.486671, title: "Recycle Centre 1" },
+            { lat: 27.456789, lon: 76.567890, title: "Recycle Centre 2" },
+            { lat: 29.308000, lon: 77.400000, title: "Recycle Centre 3" }
+        ];
+
+        markers.forEach(function(markerData) {
+            var marker = L.marker([markerData.lat, markerData.lon], {
+                icon: L.divIcon(iconOptions),
+                title: markerData.title,
+                clickable: markerOptions.clickable,
+                draggable: markerOptions.draggable
+            });
+
+            marker.addTo(map);
+            marker.bindTooltip(markerData.title, {
+               
+                direction: "top",
+                className: "leaflet-tooltip-custom"
+            });
+        });
+    </script>
+</body>
+</html>
