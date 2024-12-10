@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
     <link rel="shortcut icon" href="/images/logoewaste.jpeg" type="image/x-icon">
+    <link href="./map.ejs">
+    <link rel="stylesheet" href="/stylesheets/leaflet.css">
+<script src="/javascripts/leaflet.js"></script>
+
     <title>E-WasteCare</title>
     <style>
         .art-piece {
@@ -63,7 +67,10 @@
         </div>
     </div>
     <%- include('./header.ejs'); %>
+   
+    
     <main>
+        
             <div class="mySlides fade">
                 <img src="/images/img2.jpg" height="400px" style="width:100%">
             </div>
@@ -100,6 +107,9 @@
                     <a href="/chatroom"> <button>Create Meeting</button></a>
                 </div>
             </div>
+        </section>
+        <section>
+            <%- include('./map.ejs'); %>
         </section>
         <section class="services">
             <h2>Our Services</h2>
