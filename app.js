@@ -145,5 +145,25 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2GsgApJNSednCyhNEipBmP98vT0DlVhI",
+    authDomain: "ewastecare-a6e5f.firebaseapp.com",
+    projectId: "ewastecare-a6e5f",
+    storageBucket: "ewastecare-a6e5f.firebasestorage.app",
+    messagingSenderId: "430098905241",
+    appId: "1:430098905241:web:46d4ba1b6873b00ae3e008",
+    measurementId: "G-HE46GQ25JX"
+  };
+
+  // Initializrebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 module.exports = app;
